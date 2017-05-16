@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  # Routes for the Bookmark resource:
+  # CREATE
+  get "/bookmarks/new", :controller => "bookmarks", :action => "new"
+  post "/create_bookmark", :controller => "bookmarks", :action => "create"
+
+  # READ
+  get "/bookmarks", :controller => "bookmarks", :action => "index"
+  get "/bookmarks/:id", :controller => "bookmarks", :action => "show"
+
+  # UPDATE
+  get "/bookmarks/:id/edit", :controller => "bookmarks", :action => "edit"
+  post "/update_bookmark/:id", :controller => "bookmarks", :action => "update"
+
+  # DELETE
+  get "/delete_bookmark/:id", :controller => "bookmarks", :action => "destroy"
+  #------------------------------
+
+  devise_for :users
   # Routes for the Character resource:
   # CREATE
   get "/characters/new", :controller => "characters", :action => "new"
@@ -33,7 +51,8 @@ Rails.application.routes.draw do
   get "/delete_actor/:id", :controller => "actors", :action => "destroy"
   #------------------------------
 
-  get "/", :controller => "movies", :action => "index"
+  root to: "movies#index"
+  # get "/", :controller => "movies", :action => "index"
 
   # Routes for the Movie resource:
   # CREATE
